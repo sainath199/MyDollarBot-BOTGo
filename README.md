@@ -6,7 +6,7 @@ This video shows only the new features and enhancement of some older features. A
 <hr>
 <p align="center">
 <a><img  height=360 width=550 
-  src="https://github.com/sainath199/MyDollarBot/blob/main/docs/trackmydollar.png" alt="Expense tracking made easy!"></a>
+  src="https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/docs/trackmydollar.png" alt="Expense tracking made easy!"></a>
 </p>
 <hr>
 
