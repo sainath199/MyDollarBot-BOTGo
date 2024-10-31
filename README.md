@@ -1,12 +1,12 @@
 # 💰 TrackMyDollar V5.0 - Budget On The Go(BOTGo) 💰
 
-[https://www.youtube.com/watch?v=9fJScubX-cI](https://youtu.be/h11X3BS5dg0?si=949N3nsW-TlkdGhl)
+[YOUTUBE](https://youtu.be/h11X3BS5dg0?si=Zv__BysvKomxM2hD)
 
 This video shows only the new features and enhancement of some older features. All the other features from phase 4 are working as it is.
 <hr>
 <p align="center">
 <a><img  height=360 width=550 
-  src="https://github.com/deekay2310/MyDollarBot/blob/c56b4afd4fd5bbfffea0d0a4aade58596a5cb678/docs/0001-8711513694_20210926_212845_0000.png" alt="Expense tracking made easy!"></a>
+  src="https://github.com/sainath199/MyDollarBot/blob/main/docs/trackmydollar.png" alt="Expense tracking made easy!"></a>
 </p>
 <hr>
 
