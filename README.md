@@ -5,7 +5,7 @@
 This video shows only the new features and enhancement of some older features. All the other features from phase 4 are working as it is.
 <hr>
 <p align="center">
-<a><img  height=360 width=550 
+<a><img  height=700 width=550 
   src="https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/docs/trackmydollar.png" alt="Expense tracking made easy!"></a>
 </p>
 <hr>
