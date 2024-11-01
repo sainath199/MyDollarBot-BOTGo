@@ -88,6 +88,17 @@ A successful run will generate a message on your terminal that says "TeleBot: St
 
 7. In the Telegram app, search for your newly created bot by entering the username and open the same. Now, on Telegram, enter the "/start" or "/menu" command, and you are all set to track your expenses!
 
+## Usage
+Here’s an overview of some key commands:
+
+Add Expense: /add <amount> <category> <description>
+View Daily Summary: /day
+View Monthly Summary: /month
+Edit/Delete Expense: /edit <id> or /delete <id>
+Set Recurring Expense: /recurring <amount> <category>
+Show Pie Chart: /chart
+Set Budget: /budget <amount>
+
 ## Testing
 
 We use pytest to perform testing on all unit tests together. The command needs to be run from the home directory of the project. The command is:
@@ -106,7 +117,24 @@ coverage run -m pytest test/
 coverage report
 ```
 
-Please note: A coverage below 80% will cause the build to fail.
+Please note: A coverage below 70% will cause the build to fail.
+
+## Troubleshooting
+
+Invalid Bot Token: If your bot doesn’t start, confirm the token in user.properties is correct. Regenerate it in BotFather if necessary.
+Dependency Errors: Run pip install -r requirements.txt again to ensure all packages are correctly installed.
+Run Script Permission Issues: On macOS/Linux, make the script executable with chmod +x run.sh.
+Network/Connection Errors: Verify internet connection and ensure Telegram access in your region.
+
+## Contributing
+Contributions are welcome! Please read the CONTRIBUTING.md for more details.
+
+Fork the repository and create a new branch.
+Submit a pull request with a description of changes.
+Test Coverage: Ensure changes pass all tests and maintain 80%+ coverage.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Notes:
 You can download and install the Telegram desktop application for your system from the following site: https://desktop.telegram.org/
