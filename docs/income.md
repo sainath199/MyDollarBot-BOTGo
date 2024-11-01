@@ -3,6 +3,8 @@
 
 ### 3. **income.md**
 
+![Income Tracking](income.png)
+
 ```markdown
 # Income Tracking Feature
 
