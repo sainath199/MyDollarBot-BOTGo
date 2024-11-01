@@ -52,8 +52,6 @@ Check out the issue list [here](https://github.com/sainath199/MyDollarBot-BOTGo/
 
 [![Watch the Demo](https://img.youtube.com/vi/j7wsJHVlurg/0.jpg)](https://www.youtube.com/watch?v=j7wsJHVlurg)
 
-[](https://youtu.be/j7wsJHVlurg?si=yAU2hnobGMFL9Jhl)
-
 ## Installation guide
 
 The below instructions can be followed in order to set-up this bot at your end in a span of few minutes! Let's get started:
