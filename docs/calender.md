@@ -1,4 +1,5 @@
 # Calendar Feature
+![Income Tracking](add.png)
 
 ## Overview
 The Calendar feature in TrackMyDollar allows users to select dates directly via an interactive calendar interface when adding or editing transactions. This makes it easy to keep track of past expenses and accurately log transactions for specific days.
