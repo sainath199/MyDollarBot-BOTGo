@@ -48,8 +48,6 @@ Check out the issue list [here](https://github.com/sainath199/MyDollarBot-BOTGo/
 
 ## Demo
 
-## Demo
-
 [![Watch the Demo](https://img.youtube.com/vi/j7wsJHVlurg/0.jpg)](https://www.youtube.com/watch?v=j7wsJHVlurg)
 
 ## Installation guide
@@ -121,20 +119,20 @@ Please note: A coverage below 70% will cause the build to fail.
 
 ## Troubleshooting
 
-Invalid Bot Token: If your bot doesn’t start, confirm the token in user.properties is correct. Regenerate it in BotFather if necessary.
-Dependency Errors: Run pip install -r requirements.txt again to ensure all packages are correctly installed.
-Run Script Permission Issues: On macOS/Linux, make the script executable with chmod +x run.sh.
-Network/Connection Errors: Verify internet connection and ensure Telegram access in your region.
+- Invalid Bot Token: If your bot doesn’t start, confirm the token in user.properties is correct. Regenerate it in BotFather if necessary.
+- Dependency Errors: Run pip install -r requirements.txt again to ensure all packages are correctly installed.
+- Run Script Permission Issues: On macOS/Linux, make the script executable with chmod +x run.sh.
+- Network/Connection Errors: Verify internet connection and ensure Telegram access in your region.
 
 ## Contributing
 Contributions are welcome! Please read the CONTRIBUTING.md for more details.
 
-Fork the repository and create a new branch.
-Submit a pull request with a description of changes.
-Test Coverage: Ensure changes pass all tests and maintain 80%+ coverage.
+- Fork the repository and create a new branch.
+- Submit a pull request with a description of changes.
+- Test Coverage: Ensure changes pass all tests and maintain 70%+ coverage.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+- This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Notes:
 You can download and install the Telegram desktop application for your system from the following site: https://desktop.telegram.org/
