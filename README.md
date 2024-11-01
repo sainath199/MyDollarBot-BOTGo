@@ -4,7 +4,7 @@
 
 This video shows only the new features and enhancement of some older features. All the other features from phase 4 are working as it is.
 
-![TrackMyDollar Project](https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/docs/trackmydollar.png)
+![TrackMyDollar Project](https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/docs/mytrack.png)
 
 ![MIT license](https://img.shields.io/badge/License-MIT-green.svg)
 [![Platform](https://img.shields.io/badge/Platform-Telegram-blue)](https://desktop.telegram.org/)
