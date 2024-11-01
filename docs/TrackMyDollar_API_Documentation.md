@@ -7,8 +7,6 @@ This document provides details on all available endpoints, request formats, and 
 
 ---
 
-## Base URL
-For this example, we assume the API is hosted at `https://api.trackmydollar.com/`.
 
 ---
 
@@ -175,3 +173,51 @@ Response:
 }
 
 ```
+#### 4. Get Income Summary
+- Endpoint: /api/summary/income
+- Method: GET
+- Description: Retrieves a summary of income for a specified period.
+- Query Parameters:
+  - start_date: Start date for the summary (format: YYYY-MM-DD).
+  - end_date: End date for the summary (format: YYYY-MM-DD).
+Example Request:
+```
+GET /api/summary/income?start_date=2024-01-01&end_date=2024-01-31
+
+```
+Response:
+```
+{
+  "status": "success",
+  "total_income": 3000.0,
+  "currency": "USD",
+  "sources": [
+    {
+      "source": "Salary",
+      "amount": 2000.0
+    },
+    {
+      "source": "Freelance",
+      "amount": 1000.0
+    }
+  ]
+}
+
+```
+
+#### 5. Get Budget and Spending Comparison
+- Endpoint: /api/summary/budget
+- Method: GET
+- Description: Compares user’s spending against their set budget.
+- Query Parameters:
+  - period: Desired period (e.g., monthly, yearly).
+- Response:
+  ```
+{
+  "status": "success",
+  "budget": 1000.0,
+  "total_spent": 800.0,
+  "remaining_budget": 200.0
+}
+
+  ```
