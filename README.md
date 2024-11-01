@@ -89,13 +89,13 @@ A successful run will generate a message on your terminal that says "TeleBot: St
 ## Usage
 Here’s an overview of some key commands:
 
-Add Expense: /add <amount> <category> <description>
-View Daily Summary: /day
-View Monthly Summary: /month
-Edit/Delete Expense: /edit <id> or /delete <id>
-Set Recurring Expense: /recurring <amount> <category>
-Show Pie Chart: /chart
-Set Budget: /budget <amount>
+- Add Expense: /add <amount> <category> <description>
+- View Daily Summary: /day
+- View Monthly Summary: /month
+- Edit/Delete Expense: /edit <id> or /delete <id>
+- Set Recurring Expense: /recurring <amount> <category>
+- Show Pie Chart: /chart
+- Set Budget: /budget <amount>
 
 ## Testing
 
