@@ -117,6 +117,15 @@ coverage report
 
 Please note: A coverage below 70% will cause the build to fail.
 
+## Who Should Use TrackMyDollar?
+TrackMyDollar is designed for anyone looking for a simple, effective way to track daily expenses and manage personal finances. It’s ideal for:
+
+- Individuals who want a lightweight solution to monitor their spending habits without complicated setups.
+- Budget-Conscious Users seeking a tool to record income and expenses, visualize their spending, and set budgets.
+- Travelers or freelancers who need multi-currency support for tracking expenses in various currencies.
+- Tech-Savvy Users familiar with messaging apps like Telegram who prefer quick, command-based interactions for managing finances.
+- Whether you are a student, working professional, or someone simply wanting to take control of your finances, TrackMyDollar provides an easy-to-use platform to simplify financial tracking.
+
 ## Troubleshooting
 
 - Invalid Bot Token: If your bot doesn’t start, confirm the token in user.properties is correct. Regenerate it in BotFather if necessary.
