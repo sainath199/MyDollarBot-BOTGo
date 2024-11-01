@@ -1,4 +1,5 @@
 # About MyDollarBot's /history Feature
+![Income Tracking](history.png)
 This feature enables the user to view all of their stored records i.e it gives a historical view of all the expenses stored in MyDollarBot.
 
 # Location of Code for this Feature
