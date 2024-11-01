@@ -1,9 +1,5 @@
 # 💰 TrackMyDollar V5.0 - Budget On The Go(BOTGo) 💰
 
-[YOUTUBE](https://youtu.be/j7wsJHVlurg?si=yAU2hnobGMFL9Jhl)
-
-This video shows only the new features and enhancement of some older features. All the other features from phase 4 are working as it is.
-
 ![TrackMyDollar Project](https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/docs/my_track.png)
 
 ![MIT license](https://img.shields.io/badge/License-MIT-green.svg)
@@ -52,7 +48,11 @@ Check out the issue list [here](https://github.com/sainath199/MyDollarBot-BOTGo/
 
 ## Demo
 
-https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/docs/video1014193670.mp4
+## Demo
+
+[![Watch the Demo](https://img.youtube.com/vi/j7wsJHVlurg/0.jpg)](https://www.youtube.com/watch?v=j7wsJHVlurg)
+
+[](https://youtu.be/j7wsJHVlurg?si=yAU2hnobGMFL9Jhl)
 
 ## Installation guide
 
