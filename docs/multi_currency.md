@@ -1,6 +1,8 @@
 
 
 ### 2. **multi_currency.md**
+![Income Tracking](add.png)
+
 
 ```markdown
 # Multi-Currency Feature
