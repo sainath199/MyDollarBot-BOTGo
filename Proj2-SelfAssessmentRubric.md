@@ -20,8 +20,7 @@
 |3	| Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.|	Added in Readme.md -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/README.md|
 |3  | Test cases exist | 111 test cases with coverage > 82% for each file -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml|
 |3	| Use of code coverage	| https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml |
-|3	| Other automated analysis tools | https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml
- , Cron Jobs Exist |
+|3	| Other automated analysis tools | https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml |
 |3 | Test cases:.a large proportion of the issues related to handling failing cases. (if a test case fails, open an issue and fix it Yes, for example| https://github.com/sainath199/MyDollarBot-BOTGo/issues | 
 |3	| Test cases are routinely executed	| Cron Jobs in yml files |
 |3	| Documentation describing how this version improves on the older version| Updated README.md to show the Delta -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/README.md	|
