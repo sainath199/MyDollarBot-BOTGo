@@ -15,7 +15,6 @@
 |3	| Issues are discussed before they are closed|	Each issue is updated with the discussion before closing and comments added -> https://github.com/sainath199/MyDollarBot-BOTGo/issues|
 |3	| Use of syntax checkers.| Use of Pylint, updated in test.yml -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml|
 |3	| Issues reports: | https://github.com/sainath199/MyDollarBot-BOTGo/issues |
-
 |3	| Use of code formatters.| config files in GH showing your this formatter's config| Use of Black, updated in test.yml -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml|
 |3	| Use of style checkers	config files in GH showing your config| Use of Black, updated in test.yml -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml|
 |3	| Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.|	Added in Readme.md -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/README.md|
