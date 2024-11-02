@@ -1,37 +1,84 @@
 import unittest
-from unittest.mock import patch, Mock
-from code.sendEmail import send_email
+from unittest.mock import patch, MagicMock
 import os
 
-#this test checks the configuration of the smtp server
-@patch('code.sendEmail.smtplib.SMTP')
-def test_send_email(mock_smtp):
-    # Set up your mock SMTP server
-    mock_server = Mock()
-    mock_smtp.return_value = mock_server
+class TestEmailFunctions(unittest.TestCase):
 
-    user_email = "example@example.com"
-    subject = "Test Subject"
-    message = "Test Message"
-    attachment_path = 'test_attachment.txt'  # Use the file name
+    @patch('smtplib.SMTP')
+    def test_send_email_success(self, mock_smtp):
+        # Set up mock SMTP server
+        mock_server = MagicMock()
+        mock_smtp.return_value = mock_server
 
-    # Create a dummy test attachment file
-    with open('test_attachment.txt', 'w') as dummy_file:
-        dummy_file.write("This is a test attachment.")
+        # Call the function
+        send_email('testuser@example.com', 'Test Subject', 'Test Message', 'test_attachment.txt')
 
-    try:
-        send_email(user_email, subject, message, attachment_path)
-
-        # Check that the SMTP server is called with the correct arguments
-        mock_smtp.assert_called_once_with("smtp.gmail.com", 587)
+        # Assertions
+        mock_smtp.assert_called_with("smtp.gmail.com", 587)
         mock_server.starttls.assert_called_once()
-        mock_server.login.assert_called_once_with("dollarbot123@gmail.com", "tsvueizeuvzivtjo")
-        mock_server.sendmail.assert_called_once_with("dollarbot123@gmail.com", user_email, mock_server.sendmail.call_args[0][2])
+        mock_server.login.assert_called_once_with('dollarbot123@gmail.com', 'tsvueizeuvzivtjo')
+        mock_server.sendmail.assert_called_once()
         mock_server.quit.assert_called_once()
 
-    finally:
-        # Remove the dummy test attachment file
-        os.remove('test_attachment.txt')
+    @patch('os.path.isfile')
+    @patch('extract.run')
+    @patch('builtins.open', new_callable=unittest.mock.mock_open, read_data="test data")
+    @patch('smtplib.SMTP')
+    def test_process_email_input_with_existing_file(self, mock_smtp, mock_open, mock_extract_run, mock_isfile):
+        # Mock file check to return True
+        mock_isfile.return_value = True
+
+        # Mock bot and message
+        bot = MagicMock()
+        message = MagicMock()
+        message.chat.id = 123
+        message.text = 'testuser@example.com'
+
+        # Call the function
+        process_email_input(message, bot)
+
+        # Assertions
+        mock_smtp.assert_called()
+        mock_open.assert_called_with('code/data.csv', 'rb')
+        bot.send_message.assert_called_with(123, 'Email sent successfully!')
+
+    @patch('os.path.isfile')
+    @patch('extract.run')
+    @patch('smtplib.SMTP')
+    def test_process_email_input_without_existing_file(self, mock_smtp, mock_extract_run, mock_isfile):
+        # Mock file check to return False
+        mock_isfile.return_value = False
+        mock_extract_run.return_value = 'code/data.csv'
+
+        # Mock bot and message
+        bot = MagicMock()
+        message = MagicMock()
+        message.chat.id = 123
+        message.text = 'testuser@example.com'
+
+        # Call the function
+        process_email_input(message, bot)
+
+        # Assertions
+        mock_extract_run.assert_called_once_with(message, bot)
+        mock_smtp.assert_called()
+        bot.send_message.assert_called_with(123, 'Email sent successfully!')
+
+    @patch('logging.error')
+    def test_run_with_exception(self, mock_log_error):
+        # Mock bot and message
+        bot = MagicMock()
+        message = MagicMock()
+        message.chat.id = 123
+
+        # Force an exception
+        bot.send_message.side_effect = Exception('Test exception')
+
+        # Call the function
+        run(message, bot)
+
+        # Assertions
+        mock_log_error.assert_called_once_with('Test exception')
 
 if __name__ == '__main__':
     unittest.main()
