@@ -1,24 +1,24 @@
 |Score | Notes | Evidence |
 |-----|------|------|
-|100   | Total	| |
+|94   | Total	| |
 |3 |Video-demo mp4 in GH showing functionalities|https://www.youtube.com/watch?v=j7wsJHVlurg|
-|3	| Short release cycles| 4 Releases	-> https://github.com/sainath199/MyDollarBot-BOTGo/releases |
-|3	| Workload is spread over the whole team | Each member worked on features, docs, fixes & test -> [https://github.com/anuj672/MyDollarBot-BOTGo/pulse] |
-|3	| Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing	| Updated documentation for each feature -> (https://github.com/sainath199/MyDollarBot-BOTGo/tree/main/docs)|
-|3	| File CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up| [(https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/CONTRIBUTING.md)] |	
-|3	| Docs: doco generated , format not ugly|	[(https://github.com/sainath199/MyDollarBot-BOTGo/tree/main/docs)]|
+|3	| Short release cycles| https://github.com/sainath199/MyDollarBot-BOTGo/releases |
+|3	| Workload is spread over the whole team | Each member worked on features, docs, fixes & test -> https://github.com/sainath199/MyDollarBot-BOTGo/pulse |
+|3	| Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing	| Updated documentation for each feature -> https://github.com/sainath199/MyDollarBot-BOTGo/tree/main/docs|
+|3	| File CONTRIBUTING.md lists coding standards and lots of tips on how to extend the system without screwing things up| https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/CONTRIBUTING.md |	
+|3	| Docs: doco generated , format not ugly|	https://github.com/sainath199/MyDollarBot-BOTGo/tree/main/docs|
 |3	| Evidence that the whole team is using the same tools (e.g. config files in the repo, updated by lots of different people)	| |
-|3	| Evidence that the members of the team are working across multiple places in the code base|	[(https://github.com/sainath199/MyDollarBot-BOTGo/pulse)]|
+|3	| Evidence that the members of the team are working across multiple places in the code base|	https://github.com/sainath199/MyDollarBot-BOTGo/pulse|
 |3	| Docs: what: point descriptions of each class/function (in isolation)|	 https://github.com/sainath199/MyDollarBot-BOTGo/tree/main/docs|
 |3  | Number of commits: by different people| https://github.com/sainath199/MyDollarBot-BOTGo/graphs/commit-activity	https://github.com/sainath199/MyDollarBot-BOTGo/pulse|
-|3	| Issues are being closed| 35 Issues closed -> https://github.com/sainath199/MyDollarBot-BOTGo/issues |
+|3	| Issues are being closed| 5 Issues closed -> https://github.com/sainath199/MyDollarBot-BOTGo/issues |
 |3	| Issues are discussed before they are closed|	Each issue is updated with the discussion before closing and comments added -> https://github.com/sainath199/MyDollarBot-BOTGo/issues|
 |3	| Use of syntax checkers.| Use of Pylint, updated in test.yml -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml|
 |3	| Issues reports: | https://github.com/sainath199/MyDollarBot-BOTGo/issues |
 |3	| Use of code formatters.| config files in GH showing your this formatter's config| Use of Black, updated in test.yml -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml|
 |3	| Use of style checkers	config files in GH showing your config| Use of Black, updated in test.yml -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml|
 |3	| Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code.|	Added in Readme.md -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/README.md|
-|3  | Test cases exist | 142 test cases with coverage > 85% for each file -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml|
+|3  | Test cases exist | 111 test cases with coverage > 82% for each file -> https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml|
 |3	| Use of code coverage	| https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml |
 |3	| Other automated analysis tools | https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/.github/workflows/test.yml
  , Cron Jobs Exist |
@@ -33,7 +33,7 @@
 |Y| 2.2: Is your project/software name free from trademark violations? ||
 |N| 3.1: Is your software available as a package that can be deployed without building it? ||
 |Y| 3.2: Is your software available for free?  |https://github.com/sainath199/MyDollarBot-BOTGo|
-|Y| 3.3: Is your source code publicly available to download, either as a downloadable bundle or via access to a source code repository? |https://github.com/anuj672/MyDollarBot-BOTGo|
+|Y| 3.3: Is your source code publicly available to download, either as a downloadable bundle or via access to a source code repository? |https://github.com/sainath199/MyDollarBot-BOTGo|
 |Y| 3.4: Is your software hosted in an established, third-party repository likeGitHub (https://github.com), BitBucket (https://bitbucket.org),LaunchPad (https://launchpad.net) orSourceForge (https://sourceforge.net) ||
 |Y| 4.1: Is your documentation clearly available on your website or within your software? |https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/README.md|
 |Y| 4.2: Does your documentation include a "quick start" guide, that provides a short overview of how to use your software with some basic examples of use?  |https://github.com/sainath199/MyDollarBot-BOTGo/blob/main/README.md|
