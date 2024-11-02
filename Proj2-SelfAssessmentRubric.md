@@ -1,7 +1,7 @@
 |Score | Notes | Evidence |
 |-----|------|------|
-|66   | Total	| |
-|3 |Video-demo mp4 in GH showing functionalities|https://www.youtube.com/watch?v=9fJScubX-cI|
+|100   | Total	| |
+|3 |Video-demo mp4 in GH showing functionalities|https://www.youtube.com/watch?v=j7wsJHVlurg|
 |3	| Short release cycles| 4 Releases	-> https://github.com/anuj672/MyDollarBot-BOTGo/releases |
 |3	| Workload is spread over the whole team | Each member worked on features, docs, fixes & test -> [https://github.com/anuj672/MyDollarBot-BOTGo/pulse](https://github.com/anuj672/MyDollarBot-BOTGo/pulse) |
 |3	| Docs: why: docs tell a story, motivate the whole thing, deliver a punchline that makes you want to rush out and use the thing	| Updated documentation for each feature -> [https://github.com/anuj672/MyDollarBot-BOTGo/tree/main/docs](https://github.com/anuj672/MyDollarBot-BOTGo/tree/main/docs)|
