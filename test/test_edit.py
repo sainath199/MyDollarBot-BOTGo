@@ -1,132 +1,212 @@
-import datetime
+import unittest
+from unittest.mock import patch, MagicMock
+import sys
+import os
 
-from unittest.mock import patch
+# Add the 'code' directory to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'code')))
 
+import edit
 from telebot import types
-from code import edit
 
-MOCK_CHAT_ID = 101
-MOCK_USER_DATA = {
-    str(MOCK_CHAT_ID): {'data': ["correct_mock_value"]},
-    '102': {"data": ["wrong_mock_value"]}
-}
+class TestEditModule(unittest.TestCase):
+    def setUp(self):
+        # Common setup for tests
+        self.chat_id = 12345
+        self.mock_bot = MagicMock()
+        self.message = MagicMock()
+        self.message.chat.id = self.chat_id
 
-DUMMY_DATE = str(datetime.datetime.now())
+    @patch('edit.helper')
+    def test_run_with_user_history(self, mock_helper):
+        """Test the 'run' function when user has expense history."""
+        # Mock user history
+        user_history = ['2023-10-31,Food,10.00', '2023-10-30,Transport,5.00']
+        mock_helper.getUserHistory.return_value = user_history
 
+        # Call the function
+        edit.run(self.message, self.mock_bot)
 
-@patch('telebot.telebot')
-def test_run(mock_telebot, mocker):
-    mc = mock_telebot.return_value
-    mc.reply_to.return_value = True
-    mocker.patch.object(edit, 'helper')
-    message = create_message("hello from test run!")
-    edit.helper.getUserHistory(message.chat.id).return_value = MOCK_USER_DATA[str(MOCK_CHAT_ID)]['data']
-    edit.run(message, mc)
-    assert mc.reply_to.called
+        # Assert that reply_to was called with expected parameters
+        self.assertTrue(self.mock_bot.reply_to.called)
+        reply_call_args = self.mock_bot.reply_to.call_args
 
+        # Access args and kwargs from call_args
+        args = reply_call_args.args
+        kwargs = reply_call_args.kwargs
 
-@patch('telebot.telebot')
-def test_select_category_to_be_updated(mock_telebot, mocker):
-    mc = mock_telebot.return_value
-    mc.reply_to.return_value = True
-    message = create_message("hello from testing!")
-    edit.select_category_to_be_updated(message, mc)
-    assert mc.reply_to.called
+        self.assertEqual(args[0], self.message)
+        self.assertEqual(args[1], "Select expense to be edited:")
+        # 'reply_markup' is passed via kwargs
+        self.assertIn('reply_markup', kwargs)
+        self.assertIsInstance(kwargs['reply_markup'], types.ReplyKeyboardMarkup)
 
+        # Assert that register_next_step_handler was called
+        self.assertTrue(self.mock_bot.register_next_step_handler.called)
 
-@patch('telebot.telebot')
-def test_select_category_selection_no_matching_choices(mock_telebot, mocker):
-    mc = mock_telebot.return_value
-    mc.send_message.return_value = []
-    mc.reply_to.return_value = True
-    mocker.patch.object(edit, 'helper')
-    edit.helper.getChoices().return_value = None
-    message = create_message("hello from testing!")
-    edit.select_category_to_be_updated(message, mc)
-    assert mc.reply_to.called
+    @patch('edit.helper')
+    def test_select_category_to_be_updated(self, mock_helper):
+        """Test 'select_category_to_be_updated' function."""
+        # Simulate user message with selected expense
+        self.message.text = 'Date=2023-10-31,		Category=Food,		Amount=$10.00'
 
+        # Call the function
+        edit.select_category_to_be_updated(self.message, self.mock_bot)
 
-@patch('telebot.telebot')
-def test_post_category_selection_no_matching_category(mock_telebot, mocker):
-    mc = mock_telebot.return_value
-    mc.send_message.return_value = []
-    mc.reply_to.return_value = True
-    mocker.patch.object(edit, 'helper')
-    edit.helper.getSpendCategories.return_value = None
-    message = create_message("hello from testing!")
-    edit.select_category_to_be_updated(message, mc)
-    assert mc.reply_to.called
+        # Assert that reply_to was called asking what to update
+        self.assertTrue(self.mock_bot.reply_to.called)
+        reply_call_args = self.mock_bot.reply_to.call_args
 
+        # Access args and kwargs from call_args
+        args = reply_call_args.args
+        kwargs = reply_call_args.kwargs
 
-@patch('telebot.telebot')
-def test_post_amount_input_nonworking(mock_telebot, mocker):
-    mc = mock_telebot.return_value
-    mc.send_message.return_value = True
-    mc.reply_to.return_value = True
-    mocker.patch.object(edit, 'helper')
-    edit.helper.validate_entered_amount.return_value = 0
-    message = create_message("hello from testing!")
-    edit.select_category_to_be_updated(message, mc)
-    assert mc.reply_to.called
+        self.assertEqual(args[1], "What do you want to update?")
+        self.assertIn('reply_markup', kwargs)
+        self.assertIsInstance(kwargs['reply_markup'], types.ReplyKeyboardMarkup)
 
+        # Assert that register_next_step_handler was called
+        self.assertTrue(self.mock_bot.register_next_step_handler.called)
 
-@patch('telebot.telebot')
-def test_enter_updated_data(mock_telebot, mocker):
-    mc = mock_telebot.return_value
-    mc.reply_to.return_value = True
-    mocker.patch.object(edit, 'helper')
-    edit.helper.getSpendCategories.return_value = []
-    message = create_message("hello from testing!")
-    selected_data = MOCK_USER_DATA[str(MOCK_CHAT_ID)]['data'][0]
-    edit.enter_updated_data(message, mc, selected_data)
-    assert not mc.reply_to.called
+    @patch('edit.helper')
+    def test_enter_updated_data(self, mock_helper):
+        """Test 'enter_updated_data' function."""
+        # Mock getSpendCategories
+        mock_helper.getSpendCategories.return_value = ['Food', 'Transport', 'Entertainment']
 
+        # Simulate user choosing to update 'Category'
+        self.message.text = 'Category'
 
-@patch('telebot.telebot')
-def test_edit_date(mock_telebot, mocker):
-    mc = mock_telebot.return_value
-    mc.reply_to.return_value = True
-    mocker.patch.object(edit, 'helper')
-    edit.helper.read_json().return_value = MOCK_USER_DATA
-    edit.helper.getUserHistory(MOCK_CHAT_ID).return_value = MOCK_USER_DATA[str(MOCK_CHAT_ID)]['data']
-    message = create_message("hello from testing!")
-    message.text = DUMMY_DATE
-    message.chat.id = MOCK_CHAT_ID
-    selected_data = MOCK_USER_DATA[str(MOCK_CHAT_ID)]['data'][0]
-    edit.edit_date(message, mc, selected_data)
-    assert mc.reply_to.called
+        # Selected data from previous step
+        selected_data = ['Date=2023-10-31', 'Category=Food', 'Amount=$10.00']
 
+        # Call the function
+        edit.enter_updated_data(self.message, self.mock_bot, selected_data)
 
-@patch('telebot.telebot')
-def test_edit_category(mock_telebot, mocker):
-    mc = mock_telebot.return_value
-    mc.reply_to.return_value = True
-    mocker.patch.object(edit, 'helper')
-    edit.helper.read_json().return_value = MOCK_USER_DATA
-    edit.helper.getUserHistory(MOCK_CHAT_ID).return_value = MOCK_USER_DATA[str(MOCK_CHAT_ID)]['data']
-    message = create_message("hello from testing!")
-    message.chat.id = MOCK_CHAT_ID
-    selected_data = MOCK_USER_DATA[str(MOCK_CHAT_ID)]['data'][0]
-    edit.edit_cat(message, mc, selected_data)
-    assert mc.reply_to.called
+        # Assert that reply_to was called to select new category
+        self.assertTrue(self.mock_bot.reply_to.called)
+        reply_call_args = self.mock_bot.reply_to.call_args
 
+        # Access args and kwargs from call_args
+        args = reply_call_args.args
+        kwargs = reply_call_args.kwargs
 
-@patch('telebot.telebot')
-def test_edit_cost(mock_telebot, mocker):
-    mc = mock_telebot.return_value
-    mc.reply_to.return_value = True
-    mocker.patch.object(edit, 'helper')
-    edit.helper.read_json().return_value = MOCK_USER_DATA
-    edit.helper.getUserHistory(MOCK_CHAT_ID).return_value = MOCK_USER_DATA[str(MOCK_CHAT_ID)]['data']
-    edit.helper.validate_entered_amount.return_value = 0
-    message = create_message("hello from testing!")
-    message.chat.id = MOCK_CHAT_ID
-    selected_data = MOCK_USER_DATA[str(MOCK_CHAT_ID)]['data'][0]
-    edit.edit_cost(message, mc, selected_data)
-    assert mc.reply_to.called
+        self.assertEqual(args[1], "Please select the new category")
+        self.assertIn('reply_markup', kwargs)
+        self.assertIsInstance(kwargs['reply_markup'], types.ReplyKeyboardMarkup)
 
+        # Assert that register_next_step_handler was called
+        self.assertTrue(self.mock_bot.register_next_step_handler.called)
 
-def create_message(text):
-    params = {'messagebody': text}
-    chat = types.User(11, False, 'test')
-    return types.Message(1, None, None, chat, 'text', params, "")
+    @patch('edit.helper')
+    def test_edit_date_with_valid_date(self, mock_helper):
+        """Test 'edit_date' function with valid date input."""
+        # Mock data
+        mock_helper.read_json.return_value = {
+            str(self.chat_id): {'data': ['2023-10-31,Food,10.00']}
+        }
+        mock_helper.getUserHistory.return_value = ['2023-10-31,Food,10.00']
+
+        # Simulate user entering a valid date
+        self.message.text = '01-Nov-2023'
+
+        selected_data = ['Date=2023-10-31', 'Category=Food', 'Amount=$10.00']
+
+        # Call the function
+        edit.edit_date(self.message, self.mock_bot, selected_data)
+
+        # Assert that write_json was called
+        self.assertTrue(mock_helper.write_json.called)
+
+        # Assert that reply_to was called with 'Date is updated'
+        self.mock_bot.reply_to.assert_called_with(self.message, "Date is updated")
+
+    @patch('edit.helper')
+    def test_edit_date_with_invalid_date(self, mock_helper):
+        """Test 'edit_date' function with invalid date input."""
+        # Simulate user entering an invalid date
+        self.message.text = 'Invalid-Date'
+
+        selected_data = ['Date=2023-10-31', 'Category=Food', 'Amount=$10.00']
+
+        # Call the function
+        edit.edit_date(self.message, self.mock_bot, selected_data)
+
+        # Assert that write_json was not called
+        self.assertFalse(mock_helper.write_json.called)
+
+        # Assert that reply_to was called with 'The date is incorrect'
+        self.mock_bot.reply_to.assert_called_with(self.message, "The date is incorrect")
+
+    @patch('edit.helper')
+    def test_edit_cat(self, mock_helper):
+        """Test 'edit_cat' function."""
+        # Mock data
+        mock_helper.read_json.return_value = {
+            str(self.chat_id): {'data': ['2023-10-31,Food,10.00']}
+        }
+        mock_helper.getUserHistory.return_value = ['2023-10-31,Food,10.00']
+
+        # Simulate user entering a new category
+        self.message.text = 'Transport'
+
+        selected_data = ['Date=2023-10-31', 'Category=Food', 'Amount=$10.00']
+
+        # Call the function
+        edit.edit_cat(self.message, self.mock_bot, selected_data)
+
+        # Assert that write_json was called
+        self.assertTrue(mock_helper.write_json.called)
+
+        # Assert that reply_to was called with 'Category is updated'
+        self.mock_bot.reply_to.assert_called_with(self.message, "Category is updated")
+
+    @patch('edit.helper')
+    def test_edit_cost_with_valid_amount(self, mock_helper):
+        """Test 'edit_cost' function with valid amount."""
+        # Mock data
+        mock_helper.read_json.return_value = {
+            str(self.chat_id): {'data': ['2023-10-31,Food,10.00']}
+        }
+        mock_helper.getUserHistory.return_value = ['2023-10-31,Food,10.00']
+        mock_helper.validate_entered_amount.return_value = 1  # Non-zero indicates valid
+
+        # Simulate user entering a new cost
+        self.message.text = '15.00'
+
+        selected_data = ['Date=2023-10-31', 'Category=Food', 'Amount=$10.00']
+
+        # Call the function
+        edit.edit_cost(self.message, self.mock_bot, selected_data)
+
+        # Assert that validate_entered_amount was called
+        mock_helper.validate_entered_amount.assert_called_with('15.00')
+
+        # Assert that write_json was called
+        self.assertTrue(mock_helper.write_json.called)
+
+        # Assert that reply_to was called with 'Expense amount is updated'
+        self.mock_bot.reply_to.assert_called_with(self.message, "Expense amount is updated")
+
+    @patch('edit.helper')
+    def test_edit_cost_with_invalid_amount(self, mock_helper):
+        """Test 'edit_cost' function with invalid amount."""
+        # Mock data
+        mock_helper.validate_entered_amount.return_value = 0  # Zero indicates invalid
+
+        # Simulate user entering an invalid cost
+        self.message.text = 'InvalidAmount'
+
+        selected_data = ['Date=2023-10-31', 'Category=Food', 'Amount=$10.00']
+
+        # Call the function
+        edit.edit_cost(self.message, self.mock_bot, selected_data)
+
+        # Assert that write_json was not called
+        self.assertFalse(mock_helper.write_json.called)
+
+        # Assert that reply_to was called with 'The cost is invalid'
+        self.mock_bot.reply_to.assert_called_with(self.message, "The cost is invalid")
+
+if __name__ == '__main__':
+    unittest.main()
